@@ -1,0 +1,71 @@
+[
+  {
+    "id": 1,
+    "name": "Whey Protein",
+    "description": "High-quality protein.",
+    "img": "/images/whey-protein.webp",
+    "price": 29.99
+  },
+  {
+    "id": 2,
+    "name": "Creatine",
+    "description": "For improved strength.",
+    "img": "/images/creatine.jpg",
+    "price": 19.99
+  },
+  {
+    "id": 3,
+    "name": "Whey Protein",
+    "description": "High-quality protein.",
+    "img": "/images/whey-protein.webp",
+    "price": 29.99
+  },
+  {
+    "id": 4,
+    "name": "Creatine",
+    "description": "For improved strength.",
+    "img": "/images/creatine.jpg",
+    "price": 19.99
+  },
+  {
+    "id": 5,
+    "name": "Whey Protein",
+    "description": "High-quality protein.",
+    "img": "/images/whey-protein.webp",
+    "price": 29.99
+  },
+  {
+    "id": 6,
+    "name": "Creatine",
+    "description": "For improved strength.",
+    "img": "/images/creatine.jpg",
+    "price": 19.99
+  },{
+    "id": 7,
+    "name": "Whey Protein",
+    "description": "High-quality protein.",
+    "img": "/images/whey-protein.webp",
+    "price": 29.99
+  },
+  {
+    "id": 8,
+    "name": "Creatine",
+    "description": "For improved strength.",
+    "img": "/images/creatine.jpg",
+    "price": 19.99
+  },
+  {
+    "id": 9,
+    "name": "Whey Protein",
+    "description": "High-quality protein.",
+    "img": "/images/whey-protein.webp",
+    "price": 29.99
+  },
+  {
+    "id": 10,
+    "name": "Creatine",
+    "description": "For improved strength.",
+    "img": "/images/creatine.jpg",
+    "price": 19.99
+  }
+]
