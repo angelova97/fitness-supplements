@@ -10,9 +10,10 @@ const { Script } = require("vm");
 // Инициализира сесията
 router.use(
   session({
-    secret: "random string", // Секретен низ за подписване на сесията
-    resave: true, // Презаписване на сесията при всяка заявка
-    saveUninitialized: true, // Съхраняване на неинициализирана сесия
+    secret: "random string",
+    resave: true,
+    saveUninitialized: true,
+    cookie: { secure: false, maxAge: 7200000 }, // expires after 2 hours
   })
 );
 

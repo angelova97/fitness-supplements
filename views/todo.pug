@@ -10,10 +10,7 @@ html
         background-color: #2a292b;
         font-size: 1.2em;
       }
-      .navbar-custom .navbar-nav .nav-item .nav-link {
-        color: #0099cc;
-      }
-      .navbar-custom .navbar-brand, .navbar-custom .navbar-text {
+      .navbar-custom .navbar-nav .nav-item .nav-link, .navbar-custom .navbar-brand, .navbar-custom .navbar-text {
         color: #0099cc;
       }
       .cart-badge {
@@ -30,19 +27,9 @@ html
         flex-grow: 1;
         margin: 0 15px;
       }
-      .carousel {
-        margin-top: 20px;
-      }
       .carousel-inner img {
         width: 100%;
-        height: 300px;
-      }
-      .carousel-caption {
-        background: rgba(0, 0, 0, 0.5);
-        padding: 10px;
-      }
-      .carousel-control-prev-icon, .carousel-control-next-icon {
-        background-color: #000;
+        height: auto; /* Makes carousel images responsive */
       }
       .dropdown-menu-custom {
         background-color: #d4d4d5;
@@ -59,36 +46,35 @@ html
         color: #000;
         padding: 0.5rem 1rem;
       }
-      .nav-secondary .nav-item:hover .dropdown-menu {
-        display: block;
-      }
-      .nav-secondary .dropdown-menu a:hover {
+      .nav-secondary .nav-item:hover .dropdown-menu, .nav-secondary .dropdown-menu a:hover {
         background-color: #94eb88;
         color: white;
       }
   body
-    nav.navbar.navbar-expand-lg.navbar-custom
+    nav.navbar.navbar-expand-lg.navbar-custom.navbar-light
       .container
-        a(href='/todo', style='display: block; height: 80px; width: 150px;')
-          img(src='/images/logo.png', alt='Your Brand', style='height: 100%; width: 100%;')
+        a.navbar-brand(href='/todo')
+          img(src='/images/logo.png', alt='Your Brand', height='80', width='150')
+        button.navbar-toggler.bg-primary(type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation')
+          span.navbar-toggler-icon
         .mx-auto.d-flex.justify-content-center
-          form.form-inline(action='/search', method='get')
-            input#searchInput.form-control.mr-sm-2(type='search', name='q',style='width: 450px; height: 50px;', placeholder='Търси продукти', aria-label='Search')
+          form.form-inline.my-2.my-lg-0(action='/search', method='get')
+            input#searchInput.form-control.mr-sm-2(type='search', name='q' placeholder='Search', aria-label='Search')
             button.btn.btn-outline-primary.my-2.my-sm-0(type='submit') Search
-            div#searchResults.dropdown-menu(style='position: absolute; width: 100%;')
-        div
-          ul.navbar-nav
-            li.nav-item
-              a.nav-link(href='/profile')
+            div#searchResults.dropdown-menu
+        #navbarResponsive.collapse.navbar-collapse
+          ul.navbar-nav.ml-auto
+            li.nav-item.active
+              a.nav-link(href='/profile') 
                 i.fas.fa-user.fa-lg
             li.nav-item
-              a.nav-link(href='/favorites')
+              a.nav-link(href='/favorites') 
                 i.fas.fa-heart.fa-lg
             li.nav-item
-              a.nav-link(href='/todo/cart')
+              a.nav-link(href='/todo/cart') 
+                
                 i.fas.fa-shopping-cart.fa-lg
                 span.cart-badge #{cart.length}
-                div#cartMessage.alert.alert-success(style='display: none; margin-left: 10px;')
     nav.nav-secondary
       .container
         ul.nav.justify-content-center
@@ -107,138 +93,68 @@ html
             li.nav-item.dropdown
               a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') АМИНОКИСЕЛИНИ
             li.nav-item.dropdown
-              a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') ИЗГАРЯНЕ НА МАЗНИНИ
+              a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') ИЗГАРЯНЕ НА МАЗНИНИ  
             //- li.nav-item.dropdown
             //-   a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') КРЕАТИН
-
-    #carouselBanner.carousel.slide.mt-4(data-ride='carousel')
-      ol.carousel-indicators
-        li(data-target='#carouselBanner', data-slide-to='0', class='active')
-        li(data-target='#carouselBanner', data-slide-to='1')
-        li(data-target='#carouselBanner', data-slide-to='2')
-        li(data-target='#carouselBanner', data-slide-to='3')
-      .carousel-inner
-        .carousel-item.active
-          img(src='/images/banner.jpg', alt='First Slide')
-          .carousel-caption
-            //- h5 First Slide Title
-            //- p First Slide Description
-        .carousel-item
-          img(src='/images/cookie.jpg', alt='Second Slide')
-          .carousel-caption
-            //- h5 Открийте хармонията на здравето с нашата избрана серия от Herbalife Nutrition продукти
-        .carousel-item
-          img(src='/images/elif.png', alt='Third Slide')
-          .carousel-caption
-            //- h5 Подобри тренировките с висококачествени добавки на специални цени! За всяка закупена протеинова смес - подарък предтренировъчен стимулант. Не пропускай!
-        .carousel-item
-          img(src='/images/herbb.webp', alt='Fourth Slide')
-          .carousel-caption
-            //- h5 Fourth Slide Title
-            //- p Fourth Slide Description
-      a.carousel-control-prev(href='#carouselBanner', role='button', data-slide='prev')
-        span.carousel-control-prev-icon(aria-hidden='true')
-        span.sr-only Previous
-      a.carousel-control-next(href='#carouselBanner', role='button', data-slide='next')
-        span.carousel-control-next-icon(aria-hidden='true')
-        span.sr-only Next
-
     .container.mt-4
-      h1 Fitness Supplements
+      #carouselBanner.carousel.slide.mt-4(data-ride='carousel')
+        ol.carousel-indicators
+          li(data-target='#carouselBanner', data-slide-to='0', class='active')
+          li(data-target='#carouselBanner', data-slide-to='1')
+          li(data-target='#carouselBanner', data-slide-to='2')
+          li(data-target='#carouselBanner', data-slide-to='3')
+        .carousel-inner
+          .carousel-item.active
+            img(src='/images/banner.jpg', alt='First Slide')
+            .carousel-caption
+              //- h5 First Slide Title
+              //- p First Slide Description
+          .carousel-item
+            img(src='/images/cookie.jpg', alt='Second Slide')
+            .carousel-caption
+              //- h5 Открийте хармонията на здравето с нашата избрана серия от Herbalife Nutrition продукти
+          .carousel-item
+            img(src='/images/elif.png', alt='Third Slide')
+            .carousel-caption
+              //- h5 Подобри тренировките с висококачествени добавки на специални цени! За всяка закупена протеинова смес - подарък предтренировъчен стимулант. Не пропускай!
+          .carousel-item
+            img(src='/images/herbb.webp',style="", alt='Fourth Slide')
+            .carousel-caption
+              //- h5 Fourth Slide Title
+              //- p Fourth Slide Description
+        a.carousel-control-prev(href='#carouselBanner', role='button', data-slide='prev')
+          span.carousel-control-prev-icon(aria-hidden='true')
+          span.sr-only Previous
+        a.carousel-control-next(href='#carouselBanner', role='button', data-slide='next')
+          span.carousel-control-next-icon(aria-hidden='true')
+          span.sr-only Next
+
+    
+      h4 Fitness Supplements
       p Welcome to our selection of fitness supplements.
       .row
         each supplement in supplements
-          .col-lg-24.mb-4(class="col-md-3 col-sm-4 col-xs-6")
+          .col-12.col-sm-6.col-md-4.col-lg-3.mb-4
             .card
-            a(href=`/product/${supplement.id}`)
-              img.card-img-top(src=supplement.img, alt=supplement.name, style='height: 200px; object-fit: cover;')
+              a(href=`/product/${supplement.id}`)
+                img.card-img-top(src=supplement.img, alt=supplement.name).img-fluid
               .card-body
                 h5.card-title #{supplement.name}
-                a(href=`/product/${supplement.id}`) #{supplement.name}
                 p.card-text #{supplement.description}
                 p.card-text Цена: #{supplement.price.toFixed(2)}лв
-                form(action='/todo/add-to-cart', method='post', style='display: inline-block;')
-                  input(type='hidden', name='id', value=supplement.id)
-                  button.btn.btn-primary(type='submit')
-                      i.fas.fa-shopping-cart  Купи
-                  
-                form(action='/favorites/add', method='post', style='display: inline-block; margin-left: 10px;')
-                  input(type='hidden', name='id', value=supplement.id)
-                  button.btn.btn-outline-primary(type='submit')
-                    i.fas.fa-heart
+                .d-flex.flex-column.flex-sm-row
+                  form(action='/todo/add-to-cart', method='post')
+                    input(type='hidden', name='id', value=supplement.id)
+                    button.btn.btn-primary.mb-2.mb-sm-0.mr-sm-2(type='submit')
+                      i.fas.fa-shopping-cart
+                      |  Купи
+                  form(action='/favorites/add', method='post')
+                    input(type='hidden', name='id', value=supplement.id)
+                    button.btn.btn-outline-primary(type='submit')
+                      i.fas.fa-heart
 
-script.
+    script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js')
+    script(src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')
+    script(src='./javascript/todo2.js')
 
-  document.addEventListener('DOMContentLoaded', function () {
-    const nextButton = document.querySelector('.carousel-control-next');
-    const prevButton = document.querySelector('.carousel-control-prev');
-    const slides = document.querySelectorAll('.carousel-item');
-    let activeIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
-
-    const updateActiveSlide = (index) => {
-      slides.forEach((slide, idx) => {
-        slide.classList.remove('active');
-        if(idx === index) {
-          slide.classList.add('active');
-        }
-      });
-    };
-
-    const moveToNextSlide = () => {
-      activeIndex = activeIndex + 1 >= slides.length ? 0 : activeIndex + 1;
-      updateActiveSlide(activeIndex);
-    };
-
-    const moveToPrevSlide = () => {
-      activeIndex = activeIndex - 1 < 0 ? slides.length - 1 : activeIndex - 1;
-      updateActiveSlide(activeIndex);
-    };
-
-    nextButton.addEventListener('click', moveToNextSlide);
-    prevButton.addEventListener('click', moveToPrevSlide);
-
-    // Set an interval to change slides automatically every 10 seconds
-    setInterval(moveToNextSlide, 10000); // 10000 milliseconds = 10 seconds
-  });
-
-  //const searchInput = document.querySelector('.search-box input[type="search"]');
-  const searchInput = document.getElementById('searchInput');
-  const searchResultsContainer = document.getElementById('searchResults');
-  // Directly proceed to attach the event listener without the if-check
-  searchInput.addEventListener('input', function() {
-    
-    const query = this.value;
-    if (query.length > 1) {
-      fetch(`/search?q=${encodeURIComponent(query)}`)
-        .then(response => response.json())
-        .then(data => {
-          searchResultsContainer.innerHTML = ''; // Clear previous results
-          searchResultsContainer.classList.add('show'); // Show the container
-          data.forEach(item => {
-            const resultItem = document.createElement('a');
-            resultItem.href = `/product/${item.id}`;
-            resultItem.classList.add('dropdown-item');
-            resultItem.textContent = item.name;
-            searchResultsContainer.appendChild(resultItem);
-          });
-        }).catch(error => {
-          console.error('Error fetching search results:', error);
-        });
-    } else {
-      searchResultsContainer.innerHTML = ''; // Hide and clear results if query is too short
-      searchResultsContainer.classList.remove('show');
-    }
-  })
-  
-
-    // Handle cart message display, if any
-    const cartMessage = '#{cartMessage}';
-    if (cartMessage) {
-      const cartAlert = document.querySelector('#cartAlert');
-      if (cartAlert) {
-        cartAlert.textContent = cartMessage;
-        cartAlert.style.display = 'block';
-        setTimeout(() => cartAlert.style.display = 'none', 3000);
-      }
-    }
- 

@@ -9,10 +9,10 @@ var app = express();
 
 app.use(
   session({
-    secret: "random string", // Use a real secret in production
+    secret: "random string",
     resave: true,
     saveUninitialized: true,
-    cookie: { secure: !true },
+    cookie: { secure: false, maxAge: 60000 }, // expires after 1 minute
   })
 );
 

@@ -17,12 +17,13 @@ var session = require("express-session");
 var app = express();
 app.use(session({
   secret: "random string",
-  // Use a real secret in production
   resave: true,
   saveUninitialized: true,
   cookie: {
-    secure: !true
-  }
+    secure: false,
+    maxAge: 60000
+  } // expires after 1 minute
+
 }));
 
 var indexRouter = require("./routes/index");
