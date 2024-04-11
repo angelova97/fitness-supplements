@@ -113,17 +113,13 @@ html
                     img(src=product.img alt=product.name class='img-thumbnail')
                 .col-md-7
                     h2 #{product.name}
-                    .product-reviews
-                    .rating-bar
-                        // Display current rating here
-                    span.fa.fa-star.checked
-                    span.fa.fa-star.checked
-                    span.fa.fa-star.checked
-                    span.fa.fa-star.checked
-                    span.fa.fa-star
+                    .rating-bar.js-rating-bar
+                        span.fa.fa-star
+                        span.fa.fa-star
+                        span.fa.fa-star
+                        span.fa.fa-star
+                        span.fa.fa-star
                     a(href='#collapseWriteReview' role='button' class='write-review') Напиши мнение
-                        // Review form (hidden by default)
-                        
                     h3.product-price #{product.price} лв.
                     p.free-delivery БЕЗПЛАТНА ДОСТАВКА И ПОДАРЪК
                     p.available Наличност: 
@@ -134,18 +130,24 @@ html
                         span #{product.description}
                     p.category Категория: 
                         span #{product.category}
-                    // Flavor selection if applicable
-                    select.custom-select.mb-3
-                        option(value="") Изберете Вкус
-                        // Additional option elements should be added based on product data
-                    .quantity-selector.d-inline-block
-                        input(type='number' value='1' min='1' class='form-control d-inline-block')
-                    //- tuka bugna i ne iska da dobavq kum kolichkata form(action='/todo/add-to-cart', method='post', style='display: inline-block;')
-                    //- input(type='hidden', name='id', value=fav.id)
-                    //- button.btn.btn-primary(type='submit') Прибави към количката
-                    button.btn.btn-primary.mr-2(type='button') КУПИ
-                    button.btn.btn-outline-primary(type='button')
-                        i.fas.fa-heart
+                    //- Flavor selection if applicable
+                    form(action='/todo/add-to-cart', method='post')
+                        input(type='hidden', name='id', value=product.id)
+                        select.custom-select.mb-3
+                            option(value="") Изберете Вкус
+                            each flavor in product.flavors
+                                option(value = flavor)= flavor
+                        .quantity-selector.d-inline-block
+                            input(type='number' value='1' min='1' class='form-control d-inline-block')
+                        //- tuka bugna i ne iska da dobavq kum kolichkata form(action='/todo/add-to-cart', method='post', style='display: inline-block;')
+                        //- input(type='hidden', name='id', value=fav.id)
+                        //- button.btn.btn-primary(type='submit') Прибави към количката
+                        button.btn.btn-primary.mr-2(type='submit') КУПИ
+
+                    form(action='/favorites/add', method='post')
+                        input(type='hidden', name='id', value=product.id)
+                        button.btn.btn-outline-primary(type='submit')
+                            i.fas.fa-heart
         .container.mt-4
             #accordion
                 .card.mb-3
@@ -155,7 +157,7 @@ html
                                 | Напишете мнение
                     #collapseWriteReview.collapse
                         .card-body
-                            form(method='post', action='/submit-review')
+                            form(method='post', action='/reviews/submit-review')
                                 input(type='hidden', name='productId', value=product.id)
                                 .form-group
                                     label(for='name') Вашето име
@@ -197,19 +199,26 @@ html
                                                 i.far.fa-star
                                                 - emptyStars--
 
-                script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js')
-                script(src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js')
-                script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')
-
+        script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js')
+        script(src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js')
+        script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')
           
         //- Script to handle the review link click event
         script.
             document.addEventListener('DOMContentLoaded', () => {
                 const writeReviewLink = document.querySelector('.write-review');
+                const reviewsLink = document.querySelector('.js-rating-bar');
                 writeReviewLink.addEventListener('click', function(e) {
                     e.preventDefault();
                     const reviewFormAccordion = document.getElementById('collapseWriteReview');
                     reviewFormAccordion.classList.add('show'); // Bootstrap 4 with jQuery
                     reviewFormAccordion.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+
+                reviewsLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const reviewsAccordion = document.getElementById('collapseReviews');
+                    reviewsAccordion.classList.add('show'); // Bootstrap 4 with jQuery
+                    reviewsAccordion.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
             });

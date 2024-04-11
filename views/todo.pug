@@ -5,6 +5,7 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css')
+    link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css')
     style.
       .navbar-custom {
         background-color: #2a292b;
@@ -35,6 +36,7 @@ html
         background-color: #d4d4d5;
         color: white;
         border: none;
+        top:98%;
       }
       .nav-secondary {
         background-color: #d4d4d5;
@@ -46,10 +48,14 @@ html
         color: #000;
         padding: 0.5rem 1rem;
       }
-      .nav-secondary .nav-item:hover .dropdown-menu, .nav-secondary .dropdown-menu a:hover {
+      .nav-secondary .nav-item:hover .dropdown-menu {
+        display: block;
+      }
+      .nav-secondary .dropdown-menu a:hover {
         background-color: #94eb88;
         color: white;
       }
+      
       .burger {
         width: 35px;
         height: 21px;
@@ -92,6 +98,27 @@ html
       .burger:not(.collapsed) span:nth-child(4) {
         transform: rotate(45deg);
       }
+
+      .swiper {
+        width: 100%;
+        height: 350px;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
   body
     nav.navbar.navbar-expand-lg.navbar-custom
       .container
@@ -132,48 +159,27 @@ html
             .dropdown-menu.dropdown-menu-custom
               a.dropdown-item(href='#') ВИТАМИНИ ЗА КОСА, КОЖА И НОКТИ
               a.dropdown-item(href='#') КАЛЦИИ, МАГНЕЗИИ, ЦИНК
-            li.nav-item.dropdown
-              a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') ФИТНЕС И БИО ХРАНИ
-            li.nav-item.dropdown
-              a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') АМИНОКИСЕЛИНИ
-            li.nav-item.dropdown
-              a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') ИЗГАРЯНЕ НА МАЗНИНИ  
-            //- li.nav-item.dropdown
-            //-   a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') КРЕАТИН
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') ФИТНЕС И БИО ХРАНИ
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') АМИНОКИСЕЛИНИ
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') ИЗГАРЯНЕ НА МАЗНИНИ
     .container.mt-4
-      #carouselBanner.carousel.slide.mt-4(data-ride='carousel')
-        ol.carousel-indicators
-          li(data-target='#carouselBanner', data-slide-to='0', class='active')
-          li(data-target='#carouselBanner', data-slide-to='1')
-          li(data-target='#carouselBanner', data-slide-to='2')
-          li(data-target='#carouselBanner', data-slide-to='3')
-        .carousel-inner
-          .carousel-item.active
-            img(src='/images/banner.jpg', alt='First Slide')
-            .carousel-caption
-              //- h5 First Slide Title
-              //- p First Slide Description
-          .carousel-item
-            img(src='/images/cookie.jpg', alt='Second Slide')
-            .carousel-caption
-              //- h5 Открийте хармонията на здравето с нашата избрана серия от Herbalife Nutrition продукти
-          .carousel-item
-            img(src='/images/elif.png', alt='Third Slide')
-            .carousel-caption
-              //- h5 Подобри тренировките с висококачествени добавки на специални цени! За всяка закупена протеинова смес - подарък предтренировъчен стимулант. Не пропускай!
-          .carousel-item
-            img(src='/images/herbb.webp',style="", alt='Fourth Slide')
-            .carousel-caption
-              //- h5 Fourth Slide Title
-              //- p Fourth Slide Description
-        a.carousel-control-prev(href='#carouselBanner', role='button', data-slide='prev')
-          span.carousel-control-prev-icon(aria-hidden='true')
-          span.sr-only Previous
-        a.carousel-control-next(href='#carouselBanner', role='button', data-slide='next')
-          span.carousel-control-next-icon(aria-hidden='true')
-          span.sr-only Next
+      .swiper.swiper-slider 
+        .swiper-wrapper 
+          .swiper-slide
+             img.pointer-events-none(src='/images/banner.jpg', alt='First Slide')
+          .swiper-slide
+             img.pointer-events-none(src='/images/cookie.jpg', alt='Second Slide')
+          .swiper-slide
+             img.pointer-events-none(src='/images/elif.png', alt='Third Slide')
+          .swiper-slide
+             img.pointer-events-none(src='/images/herbb.webp',style="", alt='Fourth Slide')
+        .swiper-button-next
+        .swiper-button-prev
+        .swiper-pagination
 
-    
       h4 Fitness Supplements
       p Welcome to our selection of fitness supplements.
       .row
@@ -200,5 +206,7 @@ html
     script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js')
     script(src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js')
     script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')
+    script(src='https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js')
     script(src='../javascript/todo2.js')
+    script(src='../javascript/swiperInit.js')
 

@@ -1,11 +1,11 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 let router = express.Router();
 const session = require("express-session");
-var app = express();
+const app = express();
 
 app.use(
   session({
@@ -13,16 +13,16 @@ app.use(
     resave: true,
     saveUninitialized: true,
     cookie: { secure: false, maxAge: 60000 }, // expires after 1 minute
-  })
+  }),
 );
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var todoRouter = require("./routes/todo");
-var favoritesRouter = require("./routes/favorites");
-var searchRouter = require("./routes/search");
-var productlistRouter = require("./routes/productlist");
-var reviewsRouter = require("./routes/reviews");
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
+const todoRouter = require("./routes/todo");
+const favoritesRouter = require("./routes/favorites");
+const searchRouter = require("./routes/search");
+const productlistRouter = require("./routes/productlist");
+const reviewsRouter = require("./routes/reviews");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -40,6 +40,7 @@ app.use("/todo", todoRouter);
 app.use("/favorites", favoritesRouter);
 app.use("/search", searchRouter);
 app.use("/product", productlistRouter);
+app.use("/submit-review", reviewsRouter);
 app.use("/reviews", reviewsRouter);
 
 // catch 404 and forward to error handler
@@ -57,6 +58,5 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
-
 
 module.exports = app;
