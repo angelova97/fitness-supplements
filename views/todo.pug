@@ -50,31 +50,75 @@ html
         background-color: #94eb88;
         color: white;
       }
+      .burger {
+        width: 35px;
+        height: 21px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+      }
+      .burger span {
+        width: 35px;
+        height: 3px;
+        background-color: #0099cc;
+        display: block;
+        border-radius: 20px;
+        opacity: 1;
+        transform: translate(0) rotate(0);
+        transform: ;
+        transition: all 0.3s linear;
+      }
+
+      .burger span:nth-child(4) {
+        position: absolute;
+        top: calc(50% - 1.5px);
+      }
+
+      .burger:not(.collapsed) span:nth-child(1) {
+        transform: translateY(9px);
+        opacity: 0;
+      }
+
+      .burger:not(.collapsed) span:nth-child(2) {
+        transform: rotate(-45deg);
+      }
+
+      .burger:not(.collapsed) span:nth-child(3) {
+        transform: translateY(-9px);
+        opacity: 0;
+      }
+
+      .burger:not(.collapsed) span:nth-child(4) {
+        transform: rotate(45deg);
+      }
   body
-    nav.navbar.navbar-expand-lg.navbar-custom.navbar-light
+    nav.navbar.navbar-expand-lg.navbar-custom
       .container
-        a.navbar-brand(href='/todo')
-          img(src='/images/logo.png', alt='Your Brand', height='80', width='150')
-        button.navbar-toggler.bg-primary(type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation')
-          span.navbar-toggler-icon
-        .mx-auto.d-flex.justify-content-center
-          form.form-inline.my-2.my-lg-0(action='/search', method='get')
-            input#searchInput.form-control.mr-sm-2(type='search', name='q' placeholder='Search', aria-label='Search')
-            button.btn.btn-outline-primary.my-2.my-sm-0(type='submit') Search
-            div#searchResults.dropdown-menu
+        a(href='/todo', style='display: block; height: 80px; width: 124px;')
+            img(src='/images/logo.png', alt='Your Brand', style='height: 100%; width: 100%;')
+        .burger.d-lg-none.collapsed(type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation')
+          span 
+          span 
+          span 
+          span 
         #navbarResponsive.collapse.navbar-collapse
-          ul.navbar-nav.ml-auto
-            li.nav-item.active
-              a.nav-link(href='/profile') 
+          .mx-auto.d-lg-flex.justify-content-center
+            form.form-inline.my-2.my-lg-0.justify-content-center.justify-content-sm-start.position-relative(action='/search', method='get')
+              input#searchInput.form-control.mr-sm-2.col-8(type='search', name='q' placeholder='Search', aria-label='Search')
+              button.btn.btn-outline-primary.my-2.my-sm-0.col(type='submit') Search
+              div#searchResults.dropdown-menu.col-8
+          ul.navbar-nav.flex-row.justify-content-center.justify-content-sm-start
+            li.nav-item.px-2
+              a.nav-link(href='/profile')
                 i.fas.fa-user.fa-lg
-            li.nav-item
-              a.nav-link(href='/favorites') 
+            li.nav-item.px-2
+              a.nav-link(href='/favorites')
                 i.fas.fa-heart.fa-lg
-            li.nav-item
-              a.nav-link(href='/todo/cart') 
-                
+            li.nav-item.px-2
+              a.nav-link(href='/todo/cart')
                 i.fas.fa-shopping-cart.fa-lg
-                span.cart-badge #{cart.length}
+                //- span.cart-badge #{cart.length}
     nav.nav-secondary
       .container
         ul.nav.justify-content-center
@@ -156,5 +200,5 @@ html
     script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js')
     script(src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js')
     script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')
-    script(src='./javascript/todo2.js')
+    script(src='../javascript/todo2.js')
 

@@ -148,10 +148,34 @@ html
                         i.fas.fa-heart
         .container.mt-4
             #accordion
-                .card
-                    .card-header
+                .card.mb-3
+                    .card-header(type='button' data-toggle='collapse' data-target='#collapseWriteReview')
                         h5.mb-0
-                            button.btn.btn-link(type='button' data-toggle='collapse' data-target='#collapseReviews')
+                            .btn.btn-link
+                                | Напишете мнение
+                    #collapseWriteReview.collapse
+                        .card-body
+                            form(method='post', action='/submit-review')
+                                input(type='hidden', name='productId', value=product.id)
+                                .form-group
+                                    label(for='name') Вашето име
+                                    input#name.form-control(type='text', name='name', required)
+                                .form-group
+                                    label(for='review') Вашето мнение
+                                    textarea#review.form-control(name='review', required)
+                                .form-group
+                                    label Рейтинг
+                                    .rating.d-flex
+                                        - for (var i = 1; i <= 5; i++)
+                                            .d-flex.flex-column.justify-content-center.align-items-center
+                                                label.d-block.mb-0(for=`rating-${i}`)
+                                                    i.fas.fa-star
+                                                input(type='radio', id=`rating-${i}`, name='rating', value=`${i}`, required)
+                                button.btn.btn-primary(type='submit') Изпрати
+                .card.mb-3  
+                    .card-header(type='button' data-toggle='collapse' data-target='#collapseReviews')
+                        h5.mb-0
+                            button.btn.btn-link
                                 | МНЕНИЯ
                     #collapseReviews.collapse
                         .card-body
@@ -173,79 +197,19 @@ html
                                                 i.far.fa-star
                                                 - emptyStars--
 
-                .card
-                    .card-header
-                        h5.mb-0
-                            button.btn.btn-link(type='button' data-toggle='collapse' data-target='#collapseWriteReview')
-                                | Напишете мнение
-                    #collapseWriteReview.collapse
-                        .card-body
-                            form(method='post', action='/submit-review')
-                                input(type='hidden', name='productId', value=product.id)
-                                .form-group
-                                    label(for='name') Вашето име
-                                    input#name.form-control(type='text', name='name', required)
-                                .form-group
-                                    label(for='review') Вашето мнение
-                                    textarea#review.form-control(name='review', required)
-                                .form-group
-                                    label Рейтинг
-                                    .rating
-                                        - for (var i = 1; i <= 5; i++)
-                                            input(type='radio', id=`rating-${i}`, name='rating', value=`${i}`, required)
-                                            label(for=`rating-${i}`)
-                                                i.fas.fa-star
-                                button.btn.btn-primary(type='submit') Изпрати
-
                 script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js')
                 script(src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js')
                 script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')
 
           
-        //- // Script to handle the review link click event
+        //- Script to handle the review link click event
         script.
-            document.addEventListener('DOMContentLoaded', () => {
-                const writeReviewButton = document.querySelector('.write-review');
-                const reviewForm = document.getElementById('review-form');
-                writeReviewButton.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    reviewForm.style.display = reviewForm.style.display === 'none' ? 'block' : 'none';
-                });
-            
-              //- // Scripts for toggling accordion
-            $(document).ready(function () {
-                $('.collapse').collapse();
-            });
-            });
             document.addEventListener('DOMContentLoaded', () => {
                 const writeReviewLink = document.querySelector('.write-review');
                 writeReviewLink.addEventListener('click', function(e) {
                     e.preventDefault();
                     const reviewFormAccordion = document.getElementById('collapseWriteReview');
-                    if (!new bootstrap.Collapse(reviewFormAccordion).toggle) { // Check if Bootstrap 5
-                        $('#collapseWriteReview').collapse('show'); // Bootstrap 4 with jQuery
-                    } else {
-                        new bootstrap.Collapse(reviewFormAccordion, {
-                            toggle: true
-                        }); // Bootstrap 5 example
-                    }
-                    reviewFormAccordion.scrollIntoView({ behavior: 'smooth' });
+                    reviewFormAccordion.classList.add('show'); // Bootstrap 4 with jQuery
+                    reviewFormAccordion.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
-            });
-        
-            document.addEventListener('DOMContentLoaded', () => {
-                const writeReviewLink = document.querySelector('.write-review');
-                writeReviewLink.addEventListener('click', function(event) {
-                event.preventDefault();
-                const reviewFormAccordion = document.getElementById('collapseWriteReview');
-                // Scroll to the accordion
-                reviewFormAccordion.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                // Wait for the scrolling to finish then toggle the accordion
-                setTimeout(() => {
-                    let bsCollapse = new bootstrap.Collapse(reviewFormAccordion, {
-                    toggle: true
-                    });
-                }, 600); // Adjust the timeout duration to match the scroll duration
-            });
-
             });
