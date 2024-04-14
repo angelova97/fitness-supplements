@@ -113,28 +113,13 @@ html
                     img(src=product.img alt=product.name class='img-thumbnail')
                 .col-md-7
                     h2 #{product.name}
-                    .product-reviews
-                    .rating-bar
-                        // Display current rating here
-                    span.fa.fa-star.checked
-                    span.fa.fa-star.checked
-                    span.fa.fa-star.checked
-                    span.fa.fa-star.checked
-                    span.fa.fa-star
-                    a(href='#review-form').write-review  Напиши мнение
-                        // Review form (hidden by default)
-                        #review-form(style='display: none;')
-                            form(method='post', action='/submit-review')
-                                input(type='hidden', name='productId', value=product.id)
-                                // Add fields for rating and review text
-                                select(name='rating')
-                                    option(value='5') 5 Stars
-                                    option(value='4') 4 Stars
-                                    option(value='3') 3 Stars
-                                    option(value='2') 2 Stars
-                                    option(value='1') 1 Star
-                                textarea(name='review', placeholder='Вашият коментар...')
-                                button(type='submit') Изпрати
+                    .rating-bar.js-rating-bar
+                        span.fa.fa-star
+                        span.fa.fa-star
+                        span.fa.fa-star
+                        span.fa.fa-star
+                        span.fa.fa-star
+                    a(href='#collapseWriteReview' role='button' class='write-review') Напиши мнение
                     h3.product-price #{product.price} лв.
                     p.free-delivery БЕЗПЛАТНА ДОСТАВКА И ПОДАРЪК
                     p.available Наличност: 
@@ -145,63 +130,95 @@ html
                         span #{product.description}
                     p.category Категория: 
                         span #{product.category}
-                    // Flavor selection if applicable
-                    select.custom-select.mb-3
-                        option(value="") Изберете Вкус
-                        // Additional option elements should be added based on product data
-                    .quantity-selector.d-inline-block
-                        input(type='number' value='1' min='1' class='form-control d-inline-block')
-                    //- tuka bugna i ne iska da dobavq kum kolichkata form(action='/todo/add-to-cart', method='post', style='display: inline-block;')
-                    //- input(type='hidden', name='id', value=fav.id)
-                    //- button.btn.btn-primary(type='submit') Прибави към количката
-                    button.btn.btn-primary.mr-2(type='button') КУПИ
-                    button.btn.btn-outline-primary(type='button')
-                        i.fas.fa-heart
-        //- .reviews-section
-        //-     h3 МНЕНИЯ (#{reviews.length || '0'})
-        //-     if reviews && reviews.length > 0
-        //-         each review in reviews
-        //-             .review.mb-3
-        //-                 .review-header.d-flex.justify-content-between
-        //-                     h5.review-author #{review.author}
-        //-                     span.review-date #{review.date}
-        //-                 p.review-content #{review.content}
-        //-                 // Logic to display stars based on rating
-        //-                 .review-rating
-        //-                     - var fullStars = Math.floor(review.rating)
-        //-                     - var emptyStars = 5 - fullStars
-        //-                     while fullStars > 0
-        //-                         i.fas.fa-star.checked
-        //-                         - fullStars--
-        //-                     while emptyStars > 0
-        //-                         i.far.fa-star
-        //-                         - emptyStars--
-        //- // The "Напишете мнение" section
-        //- .review-form-section
-        //-     h3 Напишете мнение
-        //-     form(method='post', action='/submit-review')
-        //-         input(type='hidden', name='productId', value=product.id)
-        //-         .form-group
-        //-             label(for='name') Вашето име
-        //-             input#name.form-control(type='text', name='name', required)
-        //-         .form-group
-        //-             label(for='review') Вашето мнение
-        //-             textarea#review.form-control(name='review', required)
-        //-         .form-group
-        //-             label Рейтинг
-        //-             .rating
-        //-                 - for (var i = 1; i <= 5; i++)
-        //-                     input(type='radio', id=`rating-${i}`, name='rating', value=`${i}`, required)
-        //-                     label(for=`rating-${i}`)
-        //-                         i.fas.fa-star
-        //-         button.btn.btn-primary(type='submit') Изпрати
-        // Script to handle the review link click event
+                    //- Flavor selection if applicable
+                    form(action='/todo/add-to-cart', method='post')
+                        input(type='hidden', name='id', value=product.id)
+                        select.custom-select.mb-3
+                            option(value="") Изберете Вкус
+                            each flavor in product.flavors
+                                option(value = flavor)= flavor
+                        .quantity-selector.d-inline-block
+                            input(type='number' value='1' min='1' class='form-control d-inline-block')
+                        //- tuka bugna i ne iska da dobavq kum kolichkata form(action='/todo/add-to-cart', method='post', style='display: inline-block;')
+                        //- input(type='hidden', name='id', value=fav.id)
+                        //- button.btn.btn-primary(type='submit') Прибави към количката
+                        button.btn.btn-primary.mr-2(type='submit') КУПИ
+
+                    form(action='/favorites/add', method='post')
+                        input(type='hidden', name='id', value=product.id)
+                        button.btn.btn-outline-primary(type='submit')
+                            i.fas.fa-heart
+        .container.mt-4
+            #accordion
+                .card.mb-3
+                    .card-header(type='button' data-toggle='collapse' data-target='#collapseWriteReview')
+                        h5.mb-0
+                            .btn.btn-link
+                                | Напишете мнение
+                    #collapseWriteReview.collapse
+                        .card-body
+                            form(method='post', action='/reviews/submit-review')
+                                input(type='hidden', name='productId', value=product.id)
+                                .form-group
+                                    label(for='name') Вашето име
+                                    input#name.form-control(type='text', name='name', required)
+                                .form-group
+                                    label(for='review') Вашето мнение
+                                    textarea#review.form-control(name='review', required)
+                                .form-group
+                                    label Рейтинг
+                                    .rating.d-flex
+                                        - for (var i = 1; i <= 5; i++)
+                                            .d-flex.flex-column.justify-content-center.align-items-center
+                                                label.d-block.mb-0(for=`rating-${i}`)
+                                                    i.fas.fa-star
+                                                input(type='radio', id=`rating-${i}`, name='rating', value=`${i}`, required)
+                                button.btn.btn-primary(type='submit') Изпрати
+                .card.mb-3  
+                    .card-header(type='button' data-toggle='collapse' data-target='#collapseReviews')
+                        h5.mb-0
+                            button.btn.btn-link
+                                | МНЕНИЯ
+                    #collapseReviews.collapse
+                        .card-body
+                            if product.reviews && product.reviews.length > 0
+                                each review in product.reviews
+                                    .review.mb-3
+                                        .review-header.d-flex.justify-content-between
+                                            h5.review-author #{review.author}
+                                            span.review-date #{review.rating}
+                                        p.review-content #{review.comment}
+                                        //- Logic to display stars based on rating
+                                        .review-rating
+                                            - var fullStars = Math.floor(review.rating)
+                                            - var emptyStars = 5 - fullStars
+                                            while fullStars > 0
+                                                i.fas.fa-star.checked
+                                                - fullStars--
+                                            while emptyStars > 0
+                                                i.far.fa-star
+                                                - emptyStars--
+
+        script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js')
+        script(src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js')
+        script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')
+          
+        //- Script to handle the review link click event
         script.
             document.addEventListener('DOMContentLoaded', () => {
-                const writeReviewButton = document.querySelector('.write-review');
-                const reviewForm = document.getElementById('review-form');
-                writeReviewButton.addEventListener('click', function(e) {
+                const writeReviewLink = document.querySelector('.write-review');
+                const reviewsLink = document.querySelector('.js-rating-bar');
+                writeReviewLink.addEventListener('click', function(e) {
                     e.preventDefault();
-                    reviewForm.style.display = reviewForm.style.display === 'none' ? 'block' : 'none';
+                    const reviewFormAccordion = document.getElementById('collapseWriteReview');
+                    reviewFormAccordion.classList.add('show'); // Bootstrap 4 with jQuery
+                    reviewFormAccordion.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+
+                reviewsLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const reviewsAccordion = document.getElementById('collapseReviews');
+                    reviewsAccordion.classList.add('show'); // Bootstrap 4 with jQuery
+                    reviewsAccordion.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
             });

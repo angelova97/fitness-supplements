@@ -4,13 +4,27 @@
     "name": "Whey Protein",
     "description": "High-quality protein.",
     "img": "/images/whey-protein.webp",
-    "price": 29.99
+    "flavors": ["chocolate", "vanilla", "banana", "strawberry"],
+    "price": 29.99,
+    "reviews": [
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      },
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      }
+    ]
   },
   {
     "id": 2,
     "name": "Creatine",
     "description": "For improved strength.",
     "img": "/images/creatine.jpg",
+    "flavors": [],
     "price": 19.99
   },
   {
@@ -18,6 +32,7 @@
     "name": "Whey Protein",
     "description": "High-quality protein.",
     "img": "/images/whey-protein.webp",
+    "flavors": [],
     "price": 29.99
   },
   {
@@ -25,6 +40,7 @@
     "name": "Creatine",
     "description": "For improved strength.",
     "img": "/images/creatine.jpg",
+    "flavors": [],
     "price": 19.99
   },
   {
@@ -32,6 +48,7 @@
     "name": "Whey Protein",
     "description": "High-quality protein.",
     "img": "/images/whey-protein.webp",
+    "flavors": [],
     "price": 29.99
   },
   {
@@ -39,12 +56,15 @@
     "name": "Creatine",
     "description": "For improved strength.",
     "img": "/images/creatine.jpg",
+    "flavors": [],
     "price": 19.99
-  },{
+  },
+  {
     "id": 7,
     "name": "Whey Protein",
     "description": "High-quality protein.",
     "img": "/images/whey-protein.webp",
+    "flavors": [],
     "price": 29.99
   },
   {
@@ -52,6 +72,7 @@
     "name": "Creatine",
     "description": "For improved strength.",
     "img": "/images/creatine.jpg",
+    "flavors": [],
     "price": 19.99
   },
   {
@@ -59,6 +80,7 @@
     "name": "Whey Protein",
     "description": "High-quality protein.",
     "img": "/images/whey-protein.webp",
+    "flavors": [],
     "price": 29.99
   },
   {
@@ -66,6 +88,7 @@
     "name": "Creatine",
     "description": "For improved strength.",
     "img": "/images/creatine.jpg",
+    "flavors": [],
     "price": 19.99
   }
 ]

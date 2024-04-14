@@ -10,10 +10,11 @@ const { Script } = require("vm");
 // Инициализира сесията
 router.use(
   session({
-    secret: "random string", // Секретен низ за подписване на сесията
-    resave: true, // Презаписване на сесията при всяка заявка
-    saveUninitialized: true, // Съхраняване на неинициализирана сесия
-  })
+    secret: "random string",
+    resave: true,
+    saveUninitialized: true,
+    cookie: { secure: false, maxAge: 7200000 }, // expires after 2 hours
+  }),
 );
 
 // Инициализира количката в сесията
@@ -49,7 +50,7 @@ router.post("/login", function (req, res) {
       } else {
         res.render("login", { warn: "ОПИТАЙТЕ ОТНОВО" });
       }
-    }
+    },
   );
 });
 
@@ -59,12 +60,6 @@ router.get("/logout", (req, res) => {
 });
 
 router.all("/", function (req, res, next) {
-  if (!req.session.username) {
-    res.redirect("/todo/login"); // Пренасочва към входа, ако потребителят не е в сесия
-    return;
-  }
-
-  console.log(req.session);
   filename = req.session.username + ".txt";
   fs.readFile(filename, (err, data) => {
     if (err) todo = new Array(); // Създава нов списък ако има грешка
@@ -119,7 +114,7 @@ router.post("/add-to-cart", function (req, res) {
   if (supplement) {
     // Check if the item is already in the cart
     const cartItem = req.session.cart.find((item) => item.id == supplementId);
-    
+
     if (cartItem) {
       // If the item is already in the cart, increment the quantity
       cartItem.quantity += 1;
@@ -130,7 +125,6 @@ router.post("/add-to-cart", function (req, res) {
   }
   res.redirect("/todo/"); // Пренасочва обратно към основната страница
 });
-
 
 // Показва количката
 router.get("/cart", function (req, res) {
@@ -185,7 +179,7 @@ router.get("/", function (req, res) {
     todo: todo,
     supplements: supplements,
     cart: req.session.cart,
-    message: req.session.cartMessage || ''
+    message: req.session.cartMessage || "",
   });
   req.session.cartMessage = null; // Clear message after displaying it
 });

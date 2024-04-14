@@ -26,10 +26,12 @@ var _require = require("vm"),
 
 router.use(session({
   secret: "random string",
-  // Секретен низ за подписване на сесията
   resave: true,
-  // Презаписване на сесията при всяка заявка
-  saveUninitialized: true // Съхраняване на неинициализирана сесия
+  saveUninitialized: true,
+  cookie: {
+    secure: false,
+    maxAge: 7200000
+  } // expires after 2 hours
 
 })); // Инициализира количката в сесията
 
