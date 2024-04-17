@@ -5,15 +5,13 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css')
+    link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css')
     style.
       .navbar-custom {
         background-color: #2a292b;
         font-size: 1.2em;
       }
-      .navbar-custom .navbar-nav .nav-item .nav-link {
-        color: #0099cc;
-      }
-      .navbar-custom .navbar-brand, .navbar-custom .navbar-text {
+      .navbar-custom .navbar-nav .nav-item .nav-link, .navbar-custom .navbar-brand, .navbar-custom .navbar-text {
         color: #0099cc;
       }
       .cart-badge {
@@ -30,24 +28,15 @@ html
         flex-grow: 1;
         margin: 0 15px;
       }
-      .carousel {
-        margin-top: 20px;
-      }
       .carousel-inner img {
         width: 100%;
-        height: 300px;
-      }
-      .carousel-caption {
-        background: rgba(0, 0, 0, 0.5);
-        padding: 10px;
-      }
-      .carousel-control-prev-icon, .carousel-control-next-icon {
-        background-color: #000;
+        height: auto; /* Makes carousel images responsive */
       }
       .dropdown-menu-custom {
         background-color: #d4d4d5;
         color: white;
         border: none;
+        top:98%;
       }
       .nav-secondary {
         background-color: #d4d4d5;
@@ -66,29 +55,116 @@ html
         background-color: #94eb88;
         color: white;
       }
+      
+      .burger {
+        width: 35px;
+        height: 21px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+      }
+      .burger span {
+        width: 35px;
+        height: 3px;
+        background-color: #0099cc;
+        display: block;
+        border-radius: 20px;
+        opacity: 1;
+        transform: translate(0) rotate(0);
+        transform: ;
+        transition: all 0.3s linear;
+      }
+
+      .burger span:nth-child(4) {
+        position: absolute;
+        top: calc(50% - 1.5px);
+      }
+
+      .burger:not(.collapsed) span:nth-child(1) {
+        transform: translateY(9px);
+        opacity: 0;
+      }
+
+      .burger:not(.collapsed) span:nth-child(2) {
+        transform: rotate(-45deg);
+      }
+
+      .burger:not(.collapsed) span:nth-child(3) {
+        transform: translateY(-9px);
+        opacity: 0;
+      }
+
+      .burger:not(.collapsed) span:nth-child(4) {
+        transform: rotate(45deg);
+      }
+
+      .swiper {
+        width: 100%;
+        height: 350px;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
   body
     nav.navbar.navbar-expand-lg.navbar-custom
       .container
-        a(href='/todo', style='display: block; height: 80px; width: 150px;')
-          img(src='/images/logo.png', alt='Your Brand', style='height: 100%; width: 100%;')
-        .mx-auto.d-flex.justify-content-center
-          form.form-inline(action='/search', method='get')
-            input#searchInput.form-control.mr-sm-2(type='search', name='q',style='width: 450px; height: 50px;', placeholder='Търси продукти', aria-label='Search')
-            button.btn.btn-outline-primary.my-2.my-sm-0(type='submit') Search
-            div#searchResults.dropdown-menu(style='position: absolute; width: 100%;')
-        div
-          ul.navbar-nav
-            li.nav-item
+        a(href='/todo', style='display: block; height: 80px; width: 124px;')
+            img(src='/images/logo.png', alt='Your Brand', style='height: 100%; width: 100%;')
+        .burger.d-lg-none.collapsed(type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation')
+          span 
+          span 
+          span 
+          span 
+        #navbarResponsive.collapse.navbar-collapse
+          .mx-auto.d-lg-flex.justify-content-center
+            form.form-inline.my-2.my-lg-0.justify-content-center.justify-content-sm-start.position-relative(action='/search', method='get')
+              input#searchInput.form-control.mr-sm-2.col-8(type='search', name='q' placeholder='Search', aria-label='Search')
+              button.btn.btn-outline-primary.my-2.my-sm-0.col(type='submit') Search
+              div#searchResults.dropdown-menu.col-8
+          ul.navbar-nav.flex-row.justify-content-center.justify-content-sm-start
+            li.nav-item.px-2
               a.nav-link(href='/profile')
                 i.fas.fa-user.fa-lg
-            li.nav-item
+            li.nav-item.px-2
               a.nav-link(href='/favorites')
                 i.fas.fa-heart.fa-lg
-            li.nav-item
+            li.nav-item.px-2
               a.nav-link(href='/todo/cart')
                 i.fas.fa-shopping-cart.fa-lg
                 span.cart-badge #{cart.length}
-                div#cartMessage.alert.alert-success(style='display: none; margin-left: 10px;')
+    nav.nav-secondary
+      .container
+        ul.nav.justify-content-center
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') ПРОТЕИНИ
+            .dropdown-menu.dropdown-menu-custom
+              a.dropdown-item(href='#') Суроватъчни протеини
+              a.dropdown-item(href='#') Растителни БИО протеини
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') ВИТАМИНИ И МИНЕРАЛИ
+            .dropdown-menu.dropdown-menu-custom
+              a.dropdown-item(href='#') ВИТАМИНИ ЗА КОСА, КОЖА И НОКТИ
+              a.dropdown-item(href='#') КАЛЦИИ, МАГНЕЗИИ, ЦИНК
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') ФИТНЕС И БИО ХРАНИ
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') АМИНОКИСЕЛИНИ
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') ИЗГАРЯНЕ НА МАЗНИНИ
   .container.mt-5
     h2.mb-4 Cart
     if cart.length > 0

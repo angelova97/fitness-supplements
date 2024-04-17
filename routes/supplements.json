@@ -4,7 +4,7 @@
     "name": "Whey Protein",
     "description": "High-quality protein.",
     "img": "/images/whey-protein.webp",
-    "flavors": ["chocolate", "vanilla", "banana", "strawberry"],
+    "flavors": ["Chocolate", "Vanilla", "Banana", "Strawberry"],
     "price": 29.99,
     "reviews": [
       {
@@ -24,48 +24,120 @@
     "name": "Creatine",
     "description": "For improved strength.",
     "img": "/images/creatine.jpg",
-    "flavors": [],
-    "price": 19.99
+    "flavors": ["Chocolate", "Vanilla", "Banana", "Strawberry"],
+    "price": 19.99,
+    "reviews": [
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      },
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      }
+    ]
   },
   {
     "id": 3,
     "name": "Whey Protein",
     "description": "High-quality protein.",
     "img": "/images/whey-protein.webp",
-    "flavors": [],
-    "price": 29.99
+    "flavors": ["Chocolate", "Vanilla", "Banana", "Strawberry"],
+    "price": 29.99,
+    "reviews": [
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      },
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      }
+    ]
   },
   {
     "id": 4,
     "name": "Creatine",
     "description": "For improved strength.",
     "img": "/images/creatine.jpg",
-    "flavors": [],
-    "price": 19.99
+    "flavors": ["Chocolate", "Vanilla", "Banana", "Strawberry"],
+    "price": 19.99,
+    "reviews": [
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      },
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      }
+    ]
   },
   {
     "id": 5,
     "name": "Whey Protein",
     "description": "High-quality protein.",
     "img": "/images/whey-protein.webp",
-    "flavors": [],
-    "price": 29.99
+    "flavors": ["Chocolate", "Vanilla", "Banana", "Strawberry"],
+    "price": 29.99,
+    "reviews": [
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      },
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      }
+    ]
   },
   {
     "id": 6,
     "name": "Creatine",
     "description": "For improved strength.",
     "img": "/images/creatine.jpg",
-    "flavors": [],
-    "price": 19.99
+    "flavors": ["Chocolate", "Vanilla", "Banana", "Strawberry"],
+    "price": 19.99,
+    "reviews": [
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      },
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      }
+    ]
   },
   {
     "id": 7,
     "name": "Whey Protein",
     "description": "High-quality protein.",
     "img": "/images/whey-protein.webp",
-    "flavors": [],
-    "price": 29.99
+    "flavors": ["Chocolate", "Vanilla", "Banana", "Strawberry"],
+    "price": 29.99,
+    "reviews": [
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      },
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      }
+    ]
   },
   {
     "id": 8,
@@ -73,22 +145,58 @@
     "description": "For improved strength.",
     "img": "/images/creatine.jpg",
     "flavors": [],
-    "price": 19.99
+    "price": 19.99,
+    "reviews": [
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      },
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      }
+    ]
   },
   {
     "id": 9,
     "name": "Whey Protein",
     "description": "High-quality protein.",
     "img": "/images/whey-protein.webp",
-    "flavors": [],
-    "price": 29.99
+    "flavors": ["Chocolate", "Vanilla", "Banana", "Strawberry"],
+    "price": 29.99,
+    "reviews": [
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      },
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      }
+    ]
   },
   {
     "id": 10,
     "name": "Creatine",
     "description": "For improved strength.",
     "img": "/images/creatine.jpg",
-    "flavors": [],
-    "price": 19.99
+    "flavors": ["Chocolate", "Vanilla", "Banana", "Strawberry"],
+    "price": 19.99,
+    "reviews": [
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      },
+      {
+        "author": "eli",
+        "rating": 4,
+        "comment": "Good"
+      }
+    ]
   }
 ]
