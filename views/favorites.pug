@@ -166,7 +166,7 @@ html
                 .card-body
                   h5.card-title #{fav.name}
                   p.card-text #{fav.description}
-                  p.card-text Price: $#{fav.price.toFixed(2)}
+                  p.card-text Цена: #{fav.price.toFixed(2)}лв
                   form(action='/todo/add-to-cart', method='post', style='display: inline-block;')
                     input(type='hidden', name='id', value=fav.id)
                     button.btn.btn-primary(type='submit') Прибави към количката

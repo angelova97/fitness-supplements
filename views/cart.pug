@@ -166,7 +166,7 @@ html
           li.nav-item.dropdown
             a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') ИЗГАРЯНЕ НА МАЗНИНИ
   .container.mt-5
-    h2.mb-4 Cart
+    h2.mb-4 Количка
     if cart.length > 0
       table.table
         colgroup
@@ -176,10 +176,10 @@ html
           col
         thead
           tr
-            th(scope='col') Item
-            th(scope='col') Price
-            th(scope='col') Quantity
-            th.text-right(scope='col') Action
+            th(scope='col') Продукти
+            th(scope='col') Цена
+            th(scope='col') Количество
+            th.text-right(scope='col') 
         tbody
           each item in cart
             tr
@@ -193,11 +193,11 @@ html
                   input(type='hidden', name='id', value=item.id)
                   button.btn.btn-danger(type='submit') Премахни
       .d-flex.mt-4.justify-content-between
-        h3 Total: 
+        h3 Обща сума: 
           span.cart-total #{cart.reduce((acc, item) => acc + item.price * (item.quantity || 1), 0).toFixed(2)}лв
         a.btn.btn-primary(href='/todo/checkout', style='margin-left: auto;') Продължи
     else
-      .alert.alert-warning No items in your cart
+      .alert.alert-warning Няма добавени продукти
 
 script(src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js')
 script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')
